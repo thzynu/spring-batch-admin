@@ -18,6 +18,9 @@
  */
 package org.springframework.batch.admin.web;
 
+import org.springframework.batch.admin.domain.support.JobParametersExtractor;
+import org.springframework.batch.core.JobParameters;
+
 public class LaunchRequest {
 	private String jobName;
 
@@ -38,5 +41,9 @@ public class LaunchRequest {
 	public void setJobParameters(String jobParameters) {
 		this.jobParameters = jobParameters;
 	}
+
+        public JobParameters toJobParameters(JobParametersExtractor extractor) {
+                return extractor.fromString(jobParameters);
+        }
 
 }

@@ -123,9 +123,7 @@ public class JobController {
 			@RequestParam(defaultValue = "execution") String origin) {
 
 		launchRequest.setJobName(jobName);
-		String params = launchRequest.jobParameters;
-
-		JobParameters jobParameters = jobParametersExtractor.fromString(params);
+                JobParameters jobParameters = launchRequest.toJobParameters(jobParametersExtractor);
 
 		try {
 			JobExecution jobExecution = jobService.launch(jobName, jobParameters);
